@@ -27,6 +27,7 @@
         padding: .5em 0;
         --background: transparent;
         border-image: conic-gradient(var(--background) 0 0) fill 0/0/0 100vw;
+        transform: translateX(0px);
     }
     .event.primary {
         --background: var(--COLOR-HIGHLIGHT-BACKGROUND)

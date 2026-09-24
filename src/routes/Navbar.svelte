@@ -8,6 +8,9 @@
         display: flex;
         align-items: stretch;
         flex-direction: row;
+        position: sticky;
+        top: 0;
+        background: var(--COLOR-BACKGROUND);
     }
     .homepage {
         padding: .75em 1em;

@@ -17,7 +17,9 @@
     "svelte-check": "^4.6.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.1",
-    "vite": "^8.0.16"
+    "vite": "^8.0.16",
+    "sass": "^1.105.0",
+    "subset-font": "^2.9.0"
   },
   "imports": {
     "#lib": "./src/lib/index.js",
@@ -38,8 +40,6 @@
   "dependencies": {
     "@sveltejs/adapter-node": "next",
     "discord-api-types": "^0.38.55",
-    "sass": "^1.105.0",
-    "subset-font": "^2.9.0",
     "zod": "^4.6.5"
   },
   "trustedDependencies": [

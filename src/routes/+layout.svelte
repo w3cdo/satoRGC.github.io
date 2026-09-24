@@ -7,6 +7,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta name="og:site_name" content="satoRGC" />
 </svelte:head>
 
 <style>

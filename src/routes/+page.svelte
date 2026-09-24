@@ -4,6 +4,12 @@
 </script>
 <style lang="scss">
 </style>
+<svelte:head>
+    <title>satoRGC</title>
+    <meta name="og:title" content="A community for rhythm games at Sato" />
+    <meta name="og:description" content="satoRGC is Sato Academy's rhythm game club. We engage in both competitive and casual play in addition to building controllers and refurbishing arcade cabinets." />
+    <meta name="theme-color" content="#FFDDFF" />
+</svelte:head>
 <h1>
     A community for rhythm games at Sato
 </h1>

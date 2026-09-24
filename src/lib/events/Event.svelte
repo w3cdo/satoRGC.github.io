@@ -4,9 +4,9 @@
 	import type { SimplifiedEvent } from "./events.remote";
 	import relativeTime from "./relativeTime";
 
-    let { name, status, scheduled_start_time, scheduled_end_time, id, description, primary = false }: SimplifiedEvent & { primary?: boolean } = $props()
+    let { name, status, scheduled_start_time, scheduled_end_time, id, description, primary = false, image }: SimplifiedEvent & { primary?: boolean } = $props()
 </script>
-<style>
+<style lang="scss">
     .description {
         font-weight: 600;
         font-size: var(--FONT-SIZE-SMALL);
@@ -25,12 +25,42 @@
     .event {
         transition: 0.15s transform;
         padding: .5em 0;
-        --background: transparent;
-        border-image: conic-gradient(var(--background) 0 0) fill 0/0/0 100vw;
         transform: translateX(0px);
     }
-    .event.primary {
-        --background: var(--COLOR-HIGHLIGHT-BACKGROUND)
+    .accessory {
+        position: absolute;
+        object-fit: cover;
+        left: -1em;
+        top: 0;
+        // I dislike this
+        width: calc(100% + 2em);
+        height: 100%;
+        opacity: 0.05;
+    }
+    a {
+        display: block;
+        position: relative;
+    }
+    @keyframes pulsing {
+        0% {
+            box-shadow: 0px 0px 1em var(--COLOR-HIGHLIGHT-TEXT);
+        }
+        100% {
+            box-shadow: 0px 0px 2em var(--COLOR-HIGHLIGHT-TEXT);
+        }
+    }
+    a.primary {
+        --background: var(--COLOR-HIGHLIGHT-BACKGROUND);
+        border-image: conic-gradient(var(--background) 0 0) fill 0/0/0 100vw;
+        background: var(--background);
+        margin: 0.5em 0;
+        .accessory {
+            opacity: 0.1;
+            // put box-shadow on accessory because it's the only one
+            // that bleeds out of the padding
+            box-shadow: 0px 0px 1em var(--COLOR-HIGHLIGHT-TEXT);
+            animation: 5s linear alternate pulsing infinite;
+        }
     }
     a:hover, a:focus-visible {
         .event {
@@ -39,8 +69,11 @@
         }
     }
 </style>
-<a href="https://discord.com/app/invite-with-guild-onboarding/{INVITE_CODE}?event={id}">
-    <div class="event {primary ? "primary" : ""}">
+<a class={primary ? "primary" : ""} href="https://discord.com/app/invite-with-guild-onboarding/{INVITE_CODE}?event={id}">
+    {#if image}
+        <img src={image} alt="" class="accessory">
+    {/if}
+    <div class="event">
         <span class="description">
             {#if status === GuildScheduledEventStatus.Active}
                 Happening now
@@ -60,7 +93,7 @@
         </h3>
         {#if description}
             <p>
-                {description.length > 100 ? description.slice(0, 100)+"..." : description}
+                {description.length > 150 ? description.slice(0, 150)+"..." : description}
             </p>
         {/if}
     </div>

@@ -21,7 +21,7 @@ export type SimplifiedEvent = ReturnType<typeof simplifyEvent>
 // TODO: actual proper ttl-cache
 let staleEvents: {expire: number, data: APIGuildScheduledEvent[]} = {expire: 0, data: []};
 
-async function fetchEvents() {
+async function fetchEvents(): Promise<APIGuildScheduledEvent[]> {
     const eventsRequest = await fetch(`https://discord.com/api/v10/guilds/${GUILD_ID}/scheduled-events`, {
         headers: { "User-Agent": "DiscordBot (satoRGC-web, 1.0)" ,"Authorization": `Bot ${BOT_TOKEN}` }
     })
@@ -32,6 +32,10 @@ async function fetchEvents() {
 export const getAllEvents = query(async () => {
     // TODO: add proper ratelimiting instead
     if (staleEvents.expire < Date.now())
-        staleEvents = { expire: Date.now() + 30*60*60*1000, data: await fetchEvents() }
+        staleEvents = {
+            expire: Date.now() + 5*60*60*1000,
+            data: (await fetchEvents())
+                .sort((a, b) => new Date(a.scheduled_start_time).getTime() - new Date(b.scheduled_start_time).getTime())
+        }
     return staleEvents.data.map(simplifyEvent)
 })

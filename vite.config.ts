@@ -2,6 +2,8 @@ import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-node';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
+import {readFile, writeFile} from "node:fs/promises"
+import subsetFont from 'subset-font';
 
 export default defineConfig({
 	plugins: [
@@ -20,6 +22,23 @@ export default defineConfig({
 			preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
 			extensions: ['.svelte', '.svx', '.md'],
 			experimental: { remoteFunctions: true }
-		})
+		}),
+		{
+			name: "rgc-subset-font",
+			async generateBundle(this, opt, bundle) {
+				// this is dumb but it'll woooorrkk
+				// also pretty unoptimized
+				const charset = Object.values(bundle).filter(e => "code" in e).map(e => e.code).join(" ");
+				for (const [name, obj] of Object.entries(bundle)) {
+					if (!name.endsWith(".ttf") || ("code" in obj))
+						continue
+					// TODO: use woff2 for compression
+					console.log(`subsetting font ${name}`)
+					obj.source = await subsetFont(obj.source, charset, {
+						targetFormat: "sfnt"
+					})
+				}
+			}
+		}
 	]
 });

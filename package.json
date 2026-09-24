@@ -39,7 +39,6 @@
   "dependencies": {
     "discord-api-types": "^0.38.55",
     "sass": "^1.105.0",
-    "vite-plugin-font": "^5.1.2",
     "zod": "^4.6.5"
   },
   "trustedDependencies": [

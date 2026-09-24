@@ -2,7 +2,6 @@ import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-auto';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import Font from "vite-plugin-font";
 
 export default defineConfig({
 	plugins: [
@@ -21,7 +20,6 @@ export default defineConfig({
 			preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
 			extensions: ['.svelte', '.svx', '.md'],
 			experimental: { remoteFunctions: true }
-		}),
-		Font.vite()
+		})
 	]
 });

@@ -20,7 +20,7 @@ RUN NODE_ENV=production bun run build
 FROM base AS release
 COPY package.json .
 COPY --from=install /tmp/prod/node_modules node_modules
-COPY --from=build /usr/src/app/.svelte-kit/generated/build build
+COPY --from=build /usr/src/app/build build
 
 EXPOSE 3000/tcp
-CMD ["bun", "run", "./build"]
+CMD ["bun", "run", "build"]

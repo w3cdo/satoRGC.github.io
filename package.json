@@ -37,6 +37,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@sveltejs/adapter-node": "^5.5.7",
     "discord-api-types": "^0.38.55",
     "sass": "^1.105.0",
     "zod": "^4.6.5"

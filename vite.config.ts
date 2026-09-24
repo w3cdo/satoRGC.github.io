@@ -30,12 +30,12 @@ export default defineConfig({
 				// also pretty unoptimized
 				const charset = Object.values(bundle).filter(e => "code" in e).map(e => e.code).join(" ");
 				for (const [name, obj] of Object.entries(bundle)) {
-					if (!name.endsWith(".ttf") || ("code" in obj))
+					if (!name.endsWith(".woff2") || ("code" in obj))
 						continue
 					// TODO: use woff2 for compression
 					console.log(`subsetting font ${name}`)
 					obj.source = await subsetFont(obj.source, charset, {
-						targetFormat: "sfnt"
+						targetFormat: "woff2"
 					})
 				}
 			}

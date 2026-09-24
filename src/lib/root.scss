@@ -10,7 +10,7 @@
 }
 
 @mixin header {
-    font-family: 'Monaspace Krypton', monospace, monospace;
+    font-family: 'Monaspace Krypton', "Monaspace Neon", monospace, monospace;
 }
 h1, h2, h3 {
     @include header;

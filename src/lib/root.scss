@@ -1,10 +1,12 @@
 @font-face {
     font-family: "Monaspace Neon";
     src: url("assets/Monaspace\ Neon\ Var.woff2");
+    font-display: swap;
 }
 @font-face {
     font-family: "Monaspace Krypton";
     src: url("assets/Monaspace\ Krypton\ Var.woff2");
+    font-display: swap;
 }
 
 @mixin header {

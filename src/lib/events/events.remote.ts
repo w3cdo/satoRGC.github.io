@@ -33,7 +33,7 @@ export const getAllEvents = query(async () => {
     // TODO: add proper ratelimiting instead
     if (staleEvents.expire < Date.now())
         staleEvents = {
-            expire: Date.now() + 5*60*60*1000,
+            expire: Date.now() + 5*60*1000,
             data: (await fetchEvents())
                 .sort((a, b) => new Date(a.scheduled_start_time).getTime() - new Date(b.scheduled_start_time).getTime())
         }

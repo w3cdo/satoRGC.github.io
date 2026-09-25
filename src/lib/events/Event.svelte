@@ -24,42 +24,31 @@
     }
     .event {
         transition: 0.15s transform;
-        padding: .5em 0;
+        padding: .5em 1em;
         transform: translateX(0px);
     }
     .accessory {
         position: absolute;
         object-fit: cover;
-        left: -1em;
         top: 0;
-        // I dislike this
-        width: calc(100% + 2em);
+        left: 0;
         height: 100%;
         opacity: 0.05;
+        width: 100%;
     }
     a {
         display: block;
         position: relative;
-    }
-    @keyframes pulsing {
-        0% {
-            box-shadow: 0px 0px 1em var(--COLOR-HIGHLIGHT-TEXT);
-        }
-        100% {
-            box-shadow: 0px 0px 2em var(--COLOR-HIGHLIGHT-TEXT);
-        }
+        left: -1em;
+        // I dislike this
+        width: calc(100% + 2em);
     }
     a.primary {
-        --background: var(--COLOR-HIGHLIGHT-BACKGROUND);
-        border-image: conic-gradient(var(--background) 0 0) fill 0/0/0 100vw;
-        background: var(--background);
+        background: var(--COLOR-HIGHLIGHT-BACKGROUND);
         margin: 0.5em 0;
+        box-shadow: 0px 0px 2em var(--COLOR-HIGHLIGHT-BACKGROUND);
         .accessory {
             opacity: 0.1;
-            // put box-shadow on accessory because it's the only one
-            // that bleeds out of the padding
-            box-shadow: 0px 0px 1em var(--COLOR-HIGHLIGHT-TEXT);
-            animation: 5s linear alternate pulsing infinite;
         }
     }
     a:hover, a:focus-visible {

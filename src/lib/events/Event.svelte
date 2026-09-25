@@ -76,7 +76,7 @@
     <div class="event">
         <span class="description">
             <!-- this is not pretty -->
-            {#if status === GuildScheduledEventStatus.Active || (status === GuildScheduledEventStatus.Scheduled && new Date(scheduled_start_time).getTime() > Date.now())}
+            {#if status === GuildScheduledEventStatus.Active || (status === GuildScheduledEventStatus.Scheduled && Date.now() > new Date(scheduled_start_time).getTime())}
                 Happening now
                 {#if scheduled_end_time}
                     &bull; Ends {relativeTime((new Date(scheduled_end_time).getTime() - Date.now()) / 1000)}

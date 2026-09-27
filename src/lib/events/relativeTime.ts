@@ -26,5 +26,5 @@ export default function relativeTime(t: number) {
     // if larger than the largest unit we get the largest unit
     const [ unitSize, unitName ] = unitMap[withinUnit-1] ?? unitMap[withinUnit] ?? unitMap.at(-1)
     // might be better for the "in x weeks" cutoff to be at like, 10 days tbh 
-    return formatter.format(Math.floor(t / unitSize), unitName)
+    return formatter.format(Math.round(t / unitSize), unitName)
 }

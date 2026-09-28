@@ -20,7 +20,8 @@ const unitMap: [number, Intl.RelativeTimeFormatUnit][] = [
  * @param t time in seconds
  */
 export default function relativeTime(t: number) {
-    const withinUnit = unitMap.findIndex(([sz]) => t <= sz)
+    const tAbs = Math.abs(t)
+    const withinUnit = unitMap.findIndex(([sz]) => tAbs <= sz)
     // get the largest unit that fits within t,
     // if smaller than the smallest unit we get the smallest unit
     // if larger than the largest unit we get the largest unit
